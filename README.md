@@ -1,3 +1,3 @@
 # Proyecto de Java con Swing y MySQL
 
-Organizador de eventos creador por Octavio Ferreyra
+Organizador de eventos creador por Octavio Ferreyra, Fabricio Mendez, Nicolas Bergliaffa
