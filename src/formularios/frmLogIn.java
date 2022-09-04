@@ -153,27 +153,33 @@ public class frmLogIn extends javax.swing.JFrame {
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         String nombreDeUsuario = txtUsuario.getText();
         String contrasenia = String.valueOf(txtContrasenia.getPassword());
+        
         listaDeUsuario = CP.getDatos();
         int i = 0;
-        for (Usuario usuario : listaDeUsuario) {
-            if (nombreDeUsuario.equals(usuario.getUsuario())) {
-                if (contrasenia.equals(usuario.getContrasenia())) {
-                    if (this.ventanaEvento == null) {
-                        ventanaEvento = new frmEvento();
+        if (listaDeUsuario != null){
+            for (Usuario usuario : listaDeUsuario) {
+                if (nombreDeUsuario.equals(usuario.getUsuario())) {
+                    if (contrasenia.equals(usuario.getContrasenia())) {
+                        if (this.ventanaEvento == null) {
+                            ventanaEvento = new frmEvento();
+                        }
+                        JOptionPane.showMessageDialog(this, "Ingresado correctamente");
+                        this.setVisible(false);
+                        ventanaEvento.setVisible(true);
+                        break;
                     }
-                    JOptionPane.showMessageDialog(this, "Ingresado correctamente");
-                    this.setVisible(false);
-                    ventanaEvento.setVisible(true);
-                    break;
+                    JOptionPane.showMessageDialog(this, "Contraseña mal ingresada", "Error al inicio de sesion", JOptionPane.ERROR_MESSAGE);
                 }
-                JOptionPane.showMessageDialog(this, "Contraseña mal ingresada", "Error al inicio de sesion", JOptionPane.ERROR_MESSAGE);
+                else {
+                    ++i;
+                }
             }
-            else {
-                ++i;
+            if (i == listaDeUsuario.size()) {
+                JOptionPane.showMessageDialog(this, "El usuario no existe", "Error al inicio de sesion", JOptionPane.ERROR_MESSAGE);
             }
         }
-        if (i == listaDeUsuario.size()) {
-            JOptionPane.showMessageDialog(this, "El usuario no existe", "Error al inicio de sesion", JOptionPane.ERROR_MESSAGE);
+        else {
+            JOptionPane.showMessageDialog(this, "Tienes que registrarte primero", "Error al iniciar sesion", JOptionPane.ERROR_MESSAGE);
         }
         txtUsuario.setText("");
         txtContrasenia.setText("");
