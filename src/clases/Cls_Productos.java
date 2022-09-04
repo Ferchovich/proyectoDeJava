@@ -12,18 +12,32 @@ public class Cls_Productos
 {
     private final String SQL_INSERT = "INSERT INTO usuarios (nombre, apellido, usuario, sexo, contrasenia) values (?,?,?,?,?)";
     private final String SQL_SELECT = "SELECT * FROM usuarios";
+    private final String SQL_CREATE = """
+                                                       create table usuarios(
+                                                       id int not null unique auto_increment,
+                                                       nombre varchar(50) not null,
+                                                       apellido varchar(50) not null,
+                                                       usuario varchar(50) not null,
+                                                       sexo varchar(50) not null,
+                                                       contrasenia varchar(50) not null
+                                                       )""";
     private PreparedStatement PS;
     private ResultSet RS;
     private Cls_Conexion CN;
     
     public Cls_Productos() {
         this.PS = null;
-        this.CN = new Cls_Conexion();
+        CN = new Cls_Conexion();
+        try {
+            PS = CN.getConnection("mydb2").prepareStatement(SQL_CREATE);
+            PS.executeUpdate();
+        }catch (SQLException ex){}
     }
+    
     
     public ArrayList<Usuario> getDatos() {
         try {
-            this.PS = this.CN.getConnection("mydb2").prepareStatement("SELECT * FROM usuarios");
+            this.PS = this.CN.getConnection("mydb2").prepareStatement(SQL_SELECT);
             this.RS = this.PS.executeQuery();
             final ArrayList<Usuario> listadeUsuario = new ArrayList<>();
             while (this.RS.next()) {
@@ -63,7 +77,7 @@ public class Cls_Productos
     
     public void insertarDatos(final Usuario usuario) {
         try {
-            PS = CN.getConnection("mydb2").prepareStatement("INSERT INTO usuarios (nombre, apellido, usuario, sexo, contrasenia) values (?,?,?,?,?)");
+            PS = CN.getConnection("mydb2").prepareStatement(SQL_INSERT);
             PS.setString(1, usuario.getNombre());
             PS.setString(2, usuario.getApellido());
             PS.setString(3, usuario.getUsuario());

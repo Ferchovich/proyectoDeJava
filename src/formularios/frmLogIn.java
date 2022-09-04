@@ -25,7 +25,7 @@ public class frmLogIn extends javax.swing.JFrame {
      */
     public frmLogIn() {
         initComponents();
-        this.CP = new Cls_Productos();
+        CP = new Cls_Productos();
         this.setLocationRelativeTo(null);
     }
 
