@@ -15,6 +15,7 @@ public class Cls_Conexion
     public static final String user = "root";
     public static final String password = "123456";
     public static final String url = "jdbc:mysql://localhost:3306";
+    private PreparedStatement PS;
     
     public Cls_Conexion() {
         conn = null;
@@ -23,15 +24,20 @@ public class Cls_Conexion
     public Connection getConnection(String dbName) {
         try {
             Class.forName(driver);
-            conn = DriverManager.getConnection(url+"/"+dbName, user, password);
-            System.out.println(conn); 
-           
-              
-            }
+            conn = DriverManager.getConnection(url, user, password);
+            PS = conn.prepareStatement("CREATE DATABASE " + dbName);
+            PS.executeUpdate();
             
-        
+        }
+            
         catch (ClassNotFoundException | SQLException ex2) {
-            System.err.print("error: " + ex2.getMessage());
+            
+            try {
+                PS = null;
+                conn = DriverManager.getConnection(url+"/"+dbName, user, password);
+            } catch (SQLException ex) {
+                System.err.println("error: " + ex.getMessage());
+            }
         }
         return conn;
     }

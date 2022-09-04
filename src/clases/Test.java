@@ -22,21 +22,24 @@ public class Test {
     private PreparedStatement PS;
     public static void main(String[] args) {
         Test test = new Test();
-        test.test();
+        Connection conn = test.test();
+        System.out.println(conn != null);
       
     }
     
     
-    public void test(){
+    public Connection test(){
         try {
             Class.forName(driver);
             conn = DriverManager.getConnection(url, user, password);
             PS = conn.prepareStatement("CREATE DATABASE mydb2");
             PS.executeUpdate();
             System.out.println("base de batos mydb2 creada");
+            
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return conn;
     }
             
 }
