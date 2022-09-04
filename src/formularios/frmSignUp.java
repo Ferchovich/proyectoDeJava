@@ -290,6 +290,7 @@ public class frmSignUp extends javax.swing.JFrame {
         }
         this.setVisible(false);
         ventanaAdministrar.setVisible(true);
+        
         ventanaAdministrar.actualizarComboBox();
     }//GEN-LAST:event_btnAdministrarActionPerformed
 

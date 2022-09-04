@@ -27,8 +27,8 @@ public class Cls_Productos
     
     public ArrayList<Usuario> getDatos() {
         try {
-            PS = this.CN.getConnection("mydb2").prepareStatement(SQL_SELECT);
-            RS = this.PS.executeQuery();
+            PS = CN.getConnection("mydb2").prepareStatement(SQL_SELECT);
+            RS = PS.executeQuery();
             ArrayList<Usuario> listadeUsuario = new ArrayList<>();
             while (RS.next()) {
                 Usuario us = new Usuario();
@@ -46,8 +46,8 @@ public class Cls_Productos
             System.err.println("error: " + ex.getMessage());
         }
         finally {
-            this.PS = null;
-            this.CN.desconectar();
+            PS = null;
+            CN.desconectar();
         }
         return null;
     }
@@ -60,8 +60,8 @@ public class Cls_Productos
             System.err.println("Error "+ e.getMessage());
         }
         finally {
-            this.PS = null;
-            this.CN.desconectar();
+            PS = null;
+            CN.desconectar();
         }
     }
     
@@ -73,7 +73,7 @@ public class Cls_Productos
             PS.setString(3, usuario.getUsuario());
             PS.setString(4, usuario.getSexo());
             PS.setString(5, usuario.getContrasenia());
-            int res = this.PS.executeUpdate();
+            int res = PS.executeUpdate();
             if (res > 0) {
                 JOptionPane.showMessageDialog(null, "Registro guardado");
             }
@@ -82,8 +82,8 @@ public class Cls_Productos
             System.err.println("error: " + e.getMessage());
         }
         finally {
-            this.PS = null;
-            this.CN.desconectar();
+            PS = null;
+            CN.desconectar();
         }
     }
 }
