@@ -22,6 +22,7 @@ public class Cls_Conexion
     public Connection getConnection(String dbName) {
         try {
             Class.forName(driver);
+            
             conn = DriverManager.getConnection(url, user, password);
             PS = conn.prepareStatement("CREATE DATABASE " + dbName);
             
@@ -33,7 +34,8 @@ public class Cls_Conexion
             
             try {
                 PS = null;
-                conn = DriverManager.getConnection(url+"/"+dbName, user, password);
+                String connectionString = "jdbc:mysql://localhost/:3306"+dbName+"?user="+user+"&password="+password;
+                conn = DriverManager.getConnection(connectionString);
             } catch (SQLException ex) {
                 System.err.println("error: " + ex.getMessage());
             }
