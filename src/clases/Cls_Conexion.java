@@ -34,8 +34,7 @@ public class Cls_Conexion
             
             try {
                 PS = null;
-                String connectionString = "jdbc:mysql://localhost/:3306"+dbName+"?user="+user+"&password="+password;
-                conn = DriverManager.getConnection(connectionString);
+                conn = DriverManager.getConnection(url+"/"+dbName, user, password);
             } catch (SQLException ex) {
                 System.err.println("error: " + ex.getMessage());
             }
