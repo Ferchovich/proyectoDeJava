@@ -139,7 +139,7 @@ public class frmAdministrar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        final String usuarioABorrar = String.valueOf(jComboBox1.getSelectedItem());
+        String usuarioABorrar = String.valueOf(jComboBox1.getSelectedItem());
         if (!usuarioABorrar.equals("null")) {
             String contrasenia = JOptionPane.showInputDialog(this, "Ingresar contraseña para el usuario: " + usuarioABorrar);
             for (int i = 0; i < listaDeUsuario.size(); ++i) {

@@ -257,16 +257,16 @@ public class frmSignUp extends javax.swing.JFrame {
         }
         else {
             int i = 0;
-            for (final Usuario us : this.listadeUsuarios) {
+            for (Usuario us : listadeUsuarios) {
                 if (us.getUsuario().equals(usuario)) {
                     ++i;
                 }
             }
             if (i == 0) {
                 Usuario us2 = new Usuario(nombre, apellido, usuario, sexo, contrasenia);
-                this.CP.insertarDatos(us2);
-                this.setVisible(false);
-                this.ventanaPadre.setVisible(true);
+                CP.insertarDatos(us2);
+                setVisible(false);
+                ventanaPadre.setVisible(true);
             }
             else {
                 JOptionPane.showMessageDialog(this, "El usuario ya existe intente de vuelta", "Registro invalido", 2);
