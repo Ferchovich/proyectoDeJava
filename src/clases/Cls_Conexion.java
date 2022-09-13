@@ -24,6 +24,7 @@ public class Cls_Conexion
             Class.forName(driver);
             
             conn = DriverManager.getConnection(url, user, password);
+            
             PS = conn.prepareStatement("CREATE DATABASE " + dbName);
             
             PS.executeUpdate();
