@@ -8,6 +8,6 @@ package clases;
  *
  * @author octavio
  */
-public class Test {
+public class Test{
     
 }
