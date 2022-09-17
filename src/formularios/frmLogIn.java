@@ -59,16 +59,16 @@ public class frmLogIn extends javax.swing.JFrame {
         txtContrasenia.setBackground(new java.awt.Color(75, 75, 75));
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 2, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Usuario");
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 2, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Contraseña");
 
         btnIniciarSesion.setBackground(new java.awt.Color(75, 75, 75));
         btnIniciarSesion.setFont(new java.awt.Font("Trebuchet MS", 2, 14)); // NOI18N
-        btnIniciarSesion.setForeground(new java.awt.Color(0, 0, 0));
+        btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         btnIniciarSesion.setText("Iniciar Sesion");
         btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,7 +78,7 @@ public class frmLogIn extends javax.swing.JFrame {
 
         btnRegistrarse.setBackground(new java.awt.Color(75, 75, 75));
         btnRegistrarse.setFont(new java.awt.Font("Trebuchet MS", 2, 14)); // NOI18N
-        btnRegistrarse.setForeground(new java.awt.Color(0, 0, 0));
+        btnRegistrarse.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrarse.setText("Crear una cuenta");
         btnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -221,10 +221,8 @@ public class frmLogIn extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmLogIn().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new frmLogIn().setVisible(true);
         });
     }
 

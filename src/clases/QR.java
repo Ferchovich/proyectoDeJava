@@ -18,21 +18,22 @@ import java.awt.image.BufferedImage;
 public class QR {
     
     public BufferedImage crearQR (String datos) throws WriterException {
-    
+        
         BitMatrix matrix;
         Writer escritor = new QRCodeWriter();
         matrix = escritor.encode(datos, BarcodeFormat.QR_CODE, 300, 300);
         BufferedImage imagen = new BufferedImage(300, 300, BufferedImage.TYPE_INT_RGB);
-        
+
         for (int y=0; y<300;y++){
             for (int x=0;x<300;x++){
                 int grayValue = (matrix.get(x, y) ? 0 : 1) & 0xff;
                 imagen.setRGB(x, y, (grayValue == 0 ? 0 : 0xFFFFFF));
-                
+
             }
         }
-        
         return imagen;
+        
+        
     }
            
 }

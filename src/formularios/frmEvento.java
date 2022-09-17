@@ -4,12 +4,21 @@
  */
 package formularios;
 
+import clases.Evento;
+import clases.QR;
+import com.google.zxing.WriterException;
+import java.awt.image.BufferedImage;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author octavio
  */
 public class frmEvento extends javax.swing.JFrame {
-
+    private QR generadorQR;
     /**
      * Creates new form frmEvento
      */
@@ -31,15 +40,15 @@ public class frmEvento extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtNombreEvento = new javax.swing.JTextField();
+        txtFecha = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        cmbRequisitos = new javax.swing.JComboBox<>();
+        btnBuscar = new javax.swing.JButton();
+        btnCrear = new javax.swing.JButton();
+        txtDireccion = new javax.swing.JTextField();
+        spnCapacidad = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,38 +57,40 @@ public class frmEvento extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("PMingLiU-ExtB", 3, 24)); // NOI18N
         jLabel1.setText("Eventos");
 
-        jLabel2.setFont(new java.awt.Font("Mongolian Baiti", 2, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Mongolian Baiti", 2, 16)); // NOI18N
         jLabel2.setText("Nombre de evento");
 
-        jLabel3.setFont(new java.awt.Font("Mongolian Baiti", 2, 18)); // NOI18N
-        jLabel3.setText("Ubicacion  evento");
+        jLabel3.setFont(new java.awt.Font("Mongolian Baiti", 2, 16)); // NOI18N
+        jLabel3.setText("Direccion del evento");
 
-        jLabel4.setFont(new java.awt.Font("Mongolian Baiti", 2, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Mongolian Baiti", 2, 16)); // NOI18N
         jLabel4.setText("Fecha del evento");
 
-        jComboBox1.setFont(new java.awt.Font("Mongolian Baiti", 2, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cordoba", "Mendoza", "Buenos Aires", "Santa fe", "Misiones" }));
+        txtNombreEvento.setFont(new java.awt.Font("Myanmar Text", 1, 14)); // NOI18N
 
-        jTextField1.setFont(new java.awt.Font("Myanmar Text", 1, 14)); // NOI18N
+        txtFecha.setFont(new java.awt.Font("Myanmar Text", 1, 14)); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Myanmar Text", 1, 14)); // NOI18N
-
-        jLabel5.setFont(new java.awt.Font("Mongolian Baiti", 2, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Mongolian Baiti", 2, 16)); // NOI18N
         jLabel5.setText("Capacidad del evento");
 
-        jTextField3.setFont(new java.awt.Font("Myanmar Text", 1, 14)); // NOI18N
-
-        jLabel6.setFont(new java.awt.Font("Mongolian Baiti", 2, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Mongolian Baiti", 2, 16)); // NOI18N
         jLabel6.setText("Requisitos del evento");
 
-        jComboBox2.setFont(new java.awt.Font("Mongolian Baiti", 2, 18)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+18 DNI FISICO", "+16 DNI FISICO", "-18 DNI FISICO", "-16 DNI FISICO", " " }));
+        cmbRequisitos.setFont(new java.awt.Font("Mongolian Baiti", 2, 18)); // NOI18N
+        cmbRequisitos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+18 DNI FISICO", "+16 DNI FISICO", "-18 DNI FISICO", "-16 DNI FISICO", " " }));
 
-        jButton1.setFont(new java.awt.Font("Mongolian Baiti", 2, 14)); // NOI18N
-        jButton1.setText("BUSCAR EVENTO");
+        btnBuscar.setFont(new java.awt.Font("Mongolian Baiti", 2, 14)); // NOI18N
+        btnBuscar.setText("BUSCAR EVENTO");
 
-        jButton2.setFont(new java.awt.Font("Mongolian Baiti", 2, 14)); // NOI18N
-        jButton2.setText("CREAR EVENTO");
+        btnCrear.setFont(new java.awt.Font("Mongolian Baiti", 2, 14)); // NOI18N
+        btnCrear.setText("CREAR EVENTO");
+        btnCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearActionPerformed(evt);
+            }
+        });
+
+        txtDireccion.setFont(new java.awt.Font("Myanmar Text", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -87,32 +98,36 @@ public class frmEvento extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(167, 167, 167))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtDireccion)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField1)
+                    .addComponent(txtFecha)
+                    .addComponent(txtNombreEvento)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(55, 55, 55))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
+                        .addGap(101, 101, 101)
+                        .addComponent(spnCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmbRequisitos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(55, 55, 55))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnBuscar)
+                                    .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(45, 45, 45))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,28 +139,28 @@ public class frmEvento extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(jTextField3))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombreEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2))
+                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbRequisitos))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(jButton1)
+                        .addComponent(btnBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(btnCrear)))
                 .addGap(28, 28, 28))
         );
 
@@ -153,7 +168,7 @@ public class frmEvento extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,6 +177,29 @@ public class frmEvento extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+        String nombreEvento = txtNombreEvento.getText();
+        String fecha = txtFecha.getText();
+        String direccion = txtDireccion.getText();
+        String capaciadad = String.valueOf(spnCapacidad.getValue());
+        String requisitos = String.valueOf(cmbRequisitos.getSelectedItem());
+        
+        Evento evento = new Evento(nombreEvento, fecha, direccion, capaciadad, requisitos);
+        generadorQR = new QR();
+        BufferedImage imagen;
+        try {
+            imagen = generadorQR.crearQR(evento.toString());
+            ImageIcon icono = new ImageIcon(imagen);
+            JOptionPane.showMessageDialog(this, "Invitacion creada correctamente", "Evento", JOptionPane.PLAIN_MESSAGE, icono);
+        } catch (WriterException ex) {
+            Logger.getLogger(frmEvento.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+        
+        
+        
+    }//GEN-LAST:event_btnCrearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,10 +237,9 @@ public class frmEvento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCrear;
+    private javax.swing.JComboBox<String> cmbRequisitos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -210,8 +247,9 @@ public class frmEvento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JSpinner spnCapacidad;
+    private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtFecha;
+    private javax.swing.JTextField txtNombreEvento;
     // End of variables declaration//GEN-END:variables
 }
