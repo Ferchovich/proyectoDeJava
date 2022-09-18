@@ -4,14 +4,13 @@
  */
 package clases;
 
-import java.util.logging.Logger;
-
 /**
  *
  * @author octavio
  */
 public class Evento {
-    private String nombre, fecha, direccion, capaciadad, requisitos;
+    private String nombre, fecha, direccion, requisitos;
+    private int capaciadad;
 
     public String getNombre() {
         return nombre;
@@ -37,11 +36,11 @@ public class Evento {
         this.direccion = direccion;
     }
 
-    public String getCapaciadad() {
+    public int getCapaciadad() {
         return capaciadad;
     }
 
-    public void setCapaciadad(String capaciadad) {
+    public void setCapaciadad(int capaciadad) {
         this.capaciadad = capaciadad;
     }
 
@@ -53,7 +52,7 @@ public class Evento {
         this.requisitos = requisitos;
     }
 
-    public Evento(String nombre, String fecha, String direccion, String capaciadad, String requisitos) {
+    public Evento(String nombre, String fecha, String direccion, int capaciadad, String requisitos) {
         this.nombre = nombre;
         this.fecha = fecha;
         this.direccion = direccion;
@@ -62,9 +61,10 @@ public class Evento {
     }
     
     
-    @Override
-    public String toString(){
-        return nombre + "\n" +
+
+    public String invitacion(String usuario){
+        return "Has sido invitado al evento de " + usuario + "\n" +
+               nombre + "\n" +
                fecha + "\n" +
                direccion + "\n" +
                capaciadad + "\n" +

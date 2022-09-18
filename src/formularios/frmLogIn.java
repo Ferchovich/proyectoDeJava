@@ -159,7 +159,7 @@ public class frmLogIn extends javax.swing.JFrame {
                 if (nombreDeUsuario.equals(usuario.getUsuario())) {
                     if (contrasenia.equals(usuario.getContrasenia())) {
                         if (ventanaEvento == null) {
-                            ventanaEvento = new frmEvento();
+                            ventanaEvento = new frmEvento(nombreDeUsuario);
                         }
                         JOptionPane.showMessageDialog(this, "Ingresado correctamente");
                         this.setVisible(false);
