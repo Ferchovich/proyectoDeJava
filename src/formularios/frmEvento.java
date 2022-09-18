@@ -4,7 +4,6 @@
  */
 package formularios;
 
-import TimeClass.TimePicker;
 import clases.Evento;
 import clases.QR;
 import com.google.zxing.WriterException;
@@ -23,6 +22,7 @@ public class frmEvento extends javax.swing.JFrame {
     private String nombreDeUsuario;
     
     private TimePicker timePicker1;
+    private TimePicker timePicker2;
     /**
      * Creates new form frmEvento
      * @param nombreDeUsuario
@@ -31,8 +31,10 @@ public class frmEvento extends javax.swing.JFrame {
         initComponents();
         this.nombreDeUsuario = nombreDeUsuario;
         timePicker1 = new TimePicker();
-        timePicker1.setDisplayText(txtTime);
+        timePicker1.setDisplayText(txtTime1);
         
+        timePicker2 = new TimePicker();
+        timePicker2.setDisplayText(txtTime2);
         
     }
 
@@ -66,8 +68,10 @@ public class frmEvento extends javax.swing.JFrame {
         btnCrear = new javax.swing.JButton();
         txtDireccion = new javax.swing.JTextField();
         txtCapacidad = new javax.swing.JTextField();
-        btnSeleccionar = new javax.swing.JButton();
-        txtTime = new javax.swing.JTextField();
+        btnHoraDeInicio = new javax.swing.JButton();
+        txtTime1 = new javax.swing.JTextField();
+        btnHoraDeCierre = new javax.swing.JButton();
+        txtTime2 = new javax.swing.JTextField();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -121,14 +125,27 @@ public class frmEvento extends javax.swing.JFrame {
         txtCapacidad.setFont(new java.awt.Font("Myanmar Text", 1, 14)); // NOI18N
         txtCapacidad.setNextFocusableComponent(txtFecha);
 
-        btnSeleccionar.setFont(new java.awt.Font("Mongolian Baiti", 2, 14)); // NOI18N
-        btnSeleccionar.setText("SELECCIONAR HORARIO");
-        btnSeleccionar.setNextFocusableComponent(btnCrear);
-        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+        btnHoraDeInicio.setFont(new java.awt.Font("Mongolian Baiti", 2, 14)); // NOI18N
+        btnHoraDeInicio.setText("Hora de Inicio");
+        btnHoraDeInicio.setNextFocusableComponent(btnCrear);
+        btnHoraDeInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSeleccionarActionPerformed(evt);
+                btnHoraDeInicioActionPerformed(evt);
             }
         });
+
+        txtTime1.setEditable(false);
+
+        btnHoraDeCierre.setFont(new java.awt.Font("Mongolian Baiti", 2, 14)); // NOI18N
+        btnHoraDeCierre.setText("Hora de Cierre");
+        btnHoraDeCierre.setNextFocusableComponent(btnCrear);
+        btnHoraDeCierre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHoraDeCierreActionPerformed(evt);
+            }
+        });
+
+        txtTime2.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -148,30 +165,37 @@ public class frmEvento extends javax.swing.JFrame {
                             .addComponent(txtFecha)
                             .addComponent(txtNombreEvento)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSeleccionar)))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(txtTime, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(30, 30, 30)
+                        .addComponent(txtTime1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(txtTime2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnBuscar)))
+                        .addGap(50, 50, 50))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(58, 58, 58)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(32, 32, 32)
+                        .addComponent(cmbRequisitos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
+                        .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnBuscar)
-                            .addComponent(cmbRequisitos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(30, Short.MAX_VALUE))))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(btnHoraDeInicio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnHoraDeCierre)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,10 +233,13 @@ public class frmEvento extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCrear)
-                    .addComponent(txtTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(btnSeleccionar)
-                .addContainerGap())
+                    .addComponent(txtTime1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTime2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnHoraDeInicio)
+                    .addComponent(btnHoraDeCierre))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -223,9 +250,7 @@ public class frmEvento extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -237,10 +262,12 @@ public class frmEvento extends javax.swing.JFrame {
         String fecha = txtFecha.getText();
         String direccion = txtDireccion.getText();
         String requisitos = String.valueOf(cmbRequisitos.getSelectedItem());
-        if (!(nombreEvento.equals("") || fecha.equals("") || direccion.equals("") || requisitos.equals(""))){
+        String horaInicio = txtTime1.getText();
+        String horaCierre = txtTime2.getText();
+        if (!(nombreEvento.equals("") || fecha.equals("") || direccion.equals("") || requisitos.equals("")) || (horaInicio.equals(horaCierre))){
             try {
                 int capacidad = Integer.parseInt(txtCapacidad.getText());
-                Evento evento = new Evento(nombreEvento, fecha, direccion, capacidad, requisitos);
+                Evento evento = new Evento(nombreEvento, fecha, direccion, requisitos, horaInicio, horaCierre, capacidad);
                 generadorQR = new QR();
                 BufferedImage imagen = generadorQR.crearQR(evento.invitacion(nombreDeUsuario));
                 ImageIcon icono = new ImageIcon(imagen);
@@ -257,9 +284,13 @@ public class frmEvento extends javax.swing.JFrame {
  
     }//GEN-LAST:event_btnCrearActionPerformed
 
-    private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
+    private void btnHoraDeInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoraDeInicioActionPerformed
         timePicker1.showPopup(this, (getWidth() - timePicker1.getPreferredSize().width) / 2, (getHeight() - timePicker1.getPreferredSize().height) / 2);
-    }//GEN-LAST:event_btnSeleccionarActionPerformed
+    }//GEN-LAST:event_btnHoraDeInicioActionPerformed
+
+    private void btnHoraDeCierreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoraDeCierreActionPerformed
+        timePicker2.showPopup(this, (getWidth() - timePicker2.getPreferredSize().width) / 2, (getHeight() - timePicker2.getPreferredSize().height) / 2);
+    }//GEN-LAST:event_btnHoraDeCierreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,7 +330,8 @@ public class frmEvento extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCrear;
-    private javax.swing.JButton btnSeleccionar;
+    private javax.swing.JButton btnHoraDeCierre;
+    private javax.swing.JButton btnHoraDeInicio;
     private javax.swing.JComboBox<String> cmbRequisitos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -315,6 +347,7 @@ public class frmEvento extends javax.swing.JFrame {
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtNombreEvento;
-    private javax.swing.JTextField txtTime;
+    private javax.swing.JTextField txtTime1;
+    private javax.swing.JTextField txtTime2;
     // End of variables declaration//GEN-END:variables
 }

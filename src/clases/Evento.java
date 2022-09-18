@@ -9,8 +9,18 @@ package clases;
  * @author octavio
  */
 public class Evento {
-    private String nombre, fecha, direccion, requisitos;
+    private String nombre, fecha, direccion, requisitos, horaInicio, horaCierre;
     private int capaciadad;
+
+    public Evento(String nombre, String fecha, String direccion, String requisitos, String horaInicio, String horaCierre, int capaciadad) {
+        this.nombre = nombre;
+        this.fecha = fecha;
+        this.direccion = direccion;
+        this.requisitos = requisitos;
+        this.horaInicio = horaInicio;
+        this.horaCierre = horaCierre;
+        this.capaciadad = capaciadad;
+    }
 
     public String getNombre() {
         return nombre;
@@ -36,14 +46,6 @@ public class Evento {
         this.direccion = direccion;
     }
 
-    public int getCapaciadad() {
-        return capaciadad;
-    }
-
-    public void setCapaciadad(int capaciadad) {
-        this.capaciadad = capaciadad;
-    }
-
     public String getRequisitos() {
         return requisitos;
     }
@@ -52,13 +54,31 @@ public class Evento {
         this.requisitos = requisitos;
     }
 
-    public Evento(String nombre, String fecha, String direccion, int capaciadad, String requisitos) {
-        this.nombre = nombre;
-        this.fecha = fecha;
-        this.direccion = direccion;
-        this.capaciadad = capaciadad;
-        this.requisitos = requisitos;
+    public String getHoraInicio() {
+        return horaInicio;
     }
+
+    public void setHoraInicio(String horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public String getHoraCierre() {
+        return horaCierre;
+    }
+
+    public void setHoraCierre(String horaCierre) {
+        this.horaCierre = horaCierre;
+    }
+
+    public int getCapaciadad() {
+        return capaciadad;
+    }
+
+    public void setCapaciadad(int capaciadad) {
+        this.capaciadad = capaciadad;
+    }
+
+   
     
     
 
@@ -68,6 +88,7 @@ public class Evento {
                fecha + "\n" +
                direccion + "\n" +
                capaciadad + "\n" +
+               "de " + horaInicio + " hasta las " + horaCierre + "\n" +
                requisitos;
     }
     
