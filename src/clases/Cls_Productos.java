@@ -1,4 +1,4 @@
-package clases;
+    package clases;
 
 import javax.swing.JOptionPane;
 import java.sql.SQLException;

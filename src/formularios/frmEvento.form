@@ -141,9 +141,9 @@
                   </Group>
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtFecha" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtFecha" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -159,18 +159,25 @@
                   <Component id="txtDireccion" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Component id="btnBuscar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnCrear" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtTime1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtTime2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txtTime1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtTime2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <Component id="btnCrear" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnHoraDeInicio" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnHoraDeCierre" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -284,6 +291,9 @@
               <Font name="Mongolian Baiti" size="14" style="2"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CREAR EVENTO"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtNombreEvento"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearActionPerformed"/>
@@ -294,6 +304,9 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Myanmar Text" size="14" style="1"/>
             </Property>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="btnHoraDeInicio"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCapacidad">
@@ -302,7 +315,7 @@
               <Font name="Myanmar Text" size="14" style="1"/>
             </Property>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="txtFecha"/>
+              <ComponentRef name="cmbRequisitos"/>
             </Property>
           </Properties>
         </Component>
@@ -313,7 +326,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Hora de Inicio"/>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="btnCrear"/>
+              <ComponentRef name="btnHoraDeCierre"/>
             </Property>
           </Properties>
           <Events>
@@ -332,7 +345,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Hora de Cierre"/>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="btnCrear"/>
+              <ComponentRef name="txtCapacidad"/>
             </Property>
           </Properties>
           <Events>

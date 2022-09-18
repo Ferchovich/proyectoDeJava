@@ -114,6 +114,7 @@ public class frmEvento extends javax.swing.JFrame {
 
         btnCrear.setFont(new java.awt.Font("Mongolian Baiti", 2, 14)); // NOI18N
         btnCrear.setText("CREAR EVENTO");
+        btnCrear.setNextFocusableComponent(txtNombreEvento);
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearActionPerformed(evt);
@@ -121,13 +122,14 @@ public class frmEvento extends javax.swing.JFrame {
         });
 
         txtDireccion.setFont(new java.awt.Font("Myanmar Text", 1, 14)); // NOI18N
+        txtDireccion.setNextFocusableComponent(btnHoraDeInicio);
 
         txtCapacidad.setFont(new java.awt.Font("Myanmar Text", 1, 14)); // NOI18N
-        txtCapacidad.setNextFocusableComponent(txtFecha);
+        txtCapacidad.setNextFocusableComponent(cmbRequisitos);
 
         btnHoraDeInicio.setFont(new java.awt.Font("Mongolian Baiti", 2, 14)); // NOI18N
         btnHoraDeInicio.setText("Hora de Inicio");
-        btnHoraDeInicio.setNextFocusableComponent(btnCrear);
+        btnHoraDeInicio.setNextFocusableComponent(btnHoraDeCierre);
         btnHoraDeInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHoraDeInicioActionPerformed(evt);
@@ -138,7 +140,7 @@ public class frmEvento extends javax.swing.JFrame {
 
         btnHoraDeCierre.setFont(new java.awt.Font("Mongolian Baiti", 2, 14)); // NOI18N
         btnHoraDeCierre.setText("Hora de Cierre");
-        btnHoraDeCierre.setNextFocusableComponent(btnCrear);
+        btnHoraDeCierre.setNextFocusableComponent(txtCapacidad);
         btnHoraDeCierre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHoraDeCierreActionPerformed(evt);
@@ -216,9 +218,9 @@ public class frmEvento extends javax.swing.JFrame {
                         .addGap(7, 7, 7)))
                 .addComponent(jLabel4)
                 .addGap(17, 17, 17)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -230,16 +232,20 @@ public class frmEvento extends javax.swing.JFrame {
                 .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(btnBuscar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCrear)
-                    .addComponent(txtTime1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTime2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtTime1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTime2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCrear)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnHoraDeInicio)
                     .addComponent(btnHoraDeCierre))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -273,7 +279,7 @@ public class frmEvento extends javax.swing.JFrame {
                 ImageIcon icono = new ImageIcon(imagen);
                 JOptionPane.showMessageDialog(this, "Invitacion creada correctamente", "Evento", JOptionPane.PLAIN_MESSAGE, icono);
             } catch (NumberFormatException ex){
-                JOptionPane.showConfirmDialog(this, "Error al ingresar los datos", "Error al crear el evento", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Error al ingresar los datos", "Error al crear el evento", JOptionPane.ERROR_MESSAGE);
             } catch (WriterException ex) {
                 JOptionPane.showMessageDialog(this, "Error al crear el codigo QR", "Error", JOptionPane.ERROR_MESSAGE);
             }

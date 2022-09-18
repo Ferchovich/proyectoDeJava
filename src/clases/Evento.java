@@ -10,7 +10,7 @@ package clases;
  */
 public class Evento {
     private String nombre, fecha, direccion, requisitos, horaInicio, horaCierre;
-    private int capaciadad;
+    private int capacidad;
 
     public Evento(String nombre, String fecha, String direccion, String requisitos, String horaInicio, String horaCierre, int capaciadad) {
         this.nombre = nombre;
@@ -19,7 +19,7 @@ public class Evento {
         this.requisitos = requisitos;
         this.horaInicio = horaInicio;
         this.horaCierre = horaCierre;
-        this.capaciadad = capaciadad;
+        this.capacidad = capaciadad;
     }
 
     public String getNombre() {
@@ -71,23 +71,22 @@ public class Evento {
     }
 
     public int getCapaciadad() {
-        return capaciadad;
+        return capacidad;
     }
 
     public void setCapaciadad(int capaciadad) {
-        this.capaciadad = capaciadad;
+        this.capacidad = capaciadad;
     }
 
    
-    
-    
+  
 
     public String invitacion(String usuario){
         return "Has sido invitado al evento de " + usuario + "\n" +
                nombre + "\n" +
                fecha + "\n" +
                direccion + "\n" +
-               capaciadad + "\n" +
+               capacidad + "\n" +
                "de " + horaInicio + " hasta las " + horaCierre + "\n" +
                requisitos;
     }
