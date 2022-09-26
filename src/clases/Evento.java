@@ -22,6 +22,10 @@ public class Evento {
         this.capacidad = capaciadad;
     }
 
+    public Evento() {
+    }
+
+    
     public String getNombre() {
         return nombre;
     }
@@ -70,11 +74,11 @@ public class Evento {
         this.horaCierre = horaCierre;
     }
 
-    public int getCapaciadad() {
+    public int getCapacidad() {
         return capacidad;
     }
 
-    public void setCapaciadad(int capaciadad) {
+    public void setCapacidad(int capaciadad) {
         this.capacidad = capaciadad;
     }
 

@@ -17,7 +17,6 @@ public class frmSignUp extends javax.swing.JFrame {
     private Cls_Productos CP;
     private frmLogIn ventanaPadre;
     private ArrayList<Usuario> listadeUsuarios;
-    private frmAdministrar ventanaAdministrar;
     /**
      * Creates new form frmSignUp2
      * @param ventanaPadre
@@ -54,7 +53,6 @@ public class frmSignUp extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         btnVolver = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
-        btnAdministrar = new javax.swing.JButton();
         txtApellido = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
 
@@ -110,7 +108,6 @@ public class frmSignUp extends javax.swing.JFrame {
         btnVolver.setFont(new java.awt.Font("Georgia", 2, 14)); // NOI18N
         btnVolver.setForeground(new java.awt.Color(0, 0, 0));
         btnVolver.setText("Volver");
-        btnVolver.setNextFocusableComponent(btnAdministrar);
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
@@ -120,19 +117,6 @@ public class frmSignUp extends javax.swing.JFrame {
         lblTitulo.setFont(new java.awt.Font("Georgia", 3, 24)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo.setText("REGISTRO DE USUARIOS");
-
-        btnAdministrar.setBackground(new java.awt.Color(75, 75, 75));
-        btnAdministrar.setFont(new java.awt.Font("Georgia", 2, 14)); // NOI18N
-        btnAdministrar.setForeground(new java.awt.Color(0, 0, 0));
-        btnAdministrar.setText("Administrar usuarios");
-        btnAdministrar.setMaximumSize(new java.awt.Dimension(156, 23));
-        btnAdministrar.setMinimumSize(new java.awt.Dimension(156, 23));
-        btnAdministrar.setPreferredSize(new java.awt.Dimension(156, 23));
-        btnAdministrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdministrarActionPerformed(evt);
-            }
-        });
 
         txtApellido.setBackground(new java.awt.Color(75, 75, 75));
         txtApellido.setNextFocusableComponent(txtContrasenia);
@@ -151,48 +135,44 @@ public class frmSignUp extends javax.swing.JFrame {
                         .addComponent(dsada)
                         .addGap(131, 131, 131)
                         .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(BackgroundLayout.createSequentialGroup()
-                                    .addGap(28, 28, 28)
-                                    .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(BackgroundLayout.createSequentialGroup()
-                                            .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(lblTitulo)
-                                                .addGroup(BackgroundLayout.createSequentialGroup()
-                                                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(211, 211, 211)))
-                                            .addGap(0, 0, Short.MAX_VALUE))
-                                        .addGroup(BackgroundLayout.createSequentialGroup()
-                                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
-                                                    .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(8, 8, 8))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
-                                                    .addComponent(jLabel4)
-                                                    .addGap(26, 26, 26))))
-                                        .addGroup(BackgroundLayout.createSequentialGroup()
-                                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel5)
-                                            .addGap(43, 43, 43))))
-                                .addGroup(BackgroundLayout.createSequentialGroup()
-                                    .addGap(59, 59, 59)
-                                    .addComponent(jLabel1))
-                                .addGroup(BackgroundLayout.createSequentialGroup()
-                                    .addGap(57, 57, 57)
-                                    .addComponent(jLabel3)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, BackgroundLayout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addComponent(btnRegistrarse)
-                                .addGap(33, 33, 33)
-                                .addComponent(btnVolver)))
-                        .addGroup(BackgroundLayout.createSequentialGroup()
-                            .addGap(82, 82, 82)
-                            .addComponent(btnAdministrar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(BackgroundLayout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(BackgroundLayout.createSequentialGroup()
+                                        .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblTitulo)
+                                            .addGroup(BackgroundLayout.createSequentialGroup()
+                                                .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(211, 211, 211)))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(BackgroundLayout.createSequentialGroup()
+                                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
+                                                .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(8, 8, 8))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
+                                                .addComponent(jLabel4)
+                                                .addGap(26, 26, 26))))
+                                    .addGroup(BackgroundLayout.createSequentialGroup()
+                                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel5)
+                                        .addGap(43, 43, 43))))
+                            .addGroup(BackgroundLayout.createSequentialGroup()
+                                .addGap(59, 59, 59)
+                                .addComponent(jLabel1))
+                            .addGroup(BackgroundLayout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(jLabel3)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, BackgroundLayout.createSequentialGroup()
+                            .addGap(60, 60, 60)
+                            .addComponent(btnRegistrarse)
+                            .addGap(35, 35, 35)
+                            .addComponent(btnVolver))))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         BackgroundLayout.setVerticalGroup(
@@ -217,19 +197,17 @@ public class frmSignUp extends javax.swing.JFrame {
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dsada)
                     .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrarse)
                     .addComponent(btnVolver))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAdministrar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -247,7 +225,7 @@ public class frmSignUp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        listadeUsuarios = CP.getDatos();
+        listadeUsuarios = CP.getDatos("usuarios");
         String nombre = txtNombre.getText();
         String apellido = txtApellido.getText();
         String usuario = txtUsuario.getText();
@@ -284,16 +262,6 @@ public class frmSignUp extends javax.swing.JFrame {
         this.setVisible(false);
         ventanaPadre.setVisible(true);
     }//GEN-LAST:event_btnVolverActionPerformed
-
-    private void btnAdministrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarActionPerformed
-        if (ventanaAdministrar == null) {
-            ventanaAdministrar = new frmAdministrar(this);
-        }
-        this.setVisible(false);
-        ventanaAdministrar.setVisible(true);
-        
-        ventanaAdministrar.actualizarComboBox();
-    }//GEN-LAST:event_btnAdministrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -333,7 +301,6 @@ public class frmSignUp extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
-    private javax.swing.JButton btnAdministrar;
     private javax.swing.JButton btnRegistrarse;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<String> cmbSexo;

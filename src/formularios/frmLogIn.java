@@ -152,17 +152,18 @@ public class frmLogIn extends javax.swing.JFrame {
         String nombreDeUsuario = txtUsuario.getText();
         String contrasenia = String.valueOf(txtContrasenia.getPassword());
         
-        listaDeUsuario = CP.getDatos();
+        listaDeUsuario = CP.getDatos("usuarios");
         int i = 0;
         if (listaDeUsuario != null){
             for (Usuario usuario : listaDeUsuario) {
                 if (nombreDeUsuario.equals(usuario.getUsuario())) {
                     if (contrasenia.equals(usuario.getContrasenia())) {
                         if (ventanaEvento == null) {
-                            ventanaEvento = new frmEvento(nombreDeUsuario);
+                            ventanaEvento = new frmEvento(nombreDeUsuario, this);
                         }
                         JOptionPane.showMessageDialog(this, "Ingresado correctamente");
                         this.setVisible(false);
+                        ventanaEvento.getLblUsuario().setText("Usuario: " + nombreDeUsuario);
                         ventanaEvento.setVisible(true);
                         break;
                     }
@@ -184,6 +185,7 @@ public class frmLogIn extends javax.swing.JFrame {
     
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
+    
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
         if (this.frmRegistro == null) {
             this.frmRegistro = new frmSignUp(this);
