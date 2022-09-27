@@ -9,15 +9,6 @@ public class Usuario
     private String contrasenia;
     private int id;
     
-    public Usuario(final int id, final String nombre, final String apellido, final String usuario, final String sexo, final String contrasenia) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.usuario = usuario;
-        this.sexo = sexo;
-        this.contrasenia = contrasenia;
-    }
-    
     public Usuario(final String nombre, final String apellido, final String usuario, final String sexo, final String contrasenia) {
         this.nombre = nombre;
         this.apellido = apellido;

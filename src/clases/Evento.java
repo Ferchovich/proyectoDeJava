@@ -83,16 +83,24 @@ public class Evento {
     }
 
    
-  
-
     public String invitacion(String usuario){
         return "Has sido invitado al evento de " + usuario + "\n" +
                nombre + "\n" +
                fecha + "\n" +
                direccion + "\n" +
-               capacidad + "\n" +
                "de " + horaInicio + " hasta las " + horaCierre + "\n" +
-               requisitos;
+               requisitos + "\n";
+    }
+    
+    public String proterties(String usuario){
+        return "Organizador: " + usuario + "\n" +
+               "Nombre del evento:" + nombre + "\n" +
+               "Fecha:" + fecha + "\n" +
+               "Direccion:" + direccion + "\n" +
+               "Capacidad:" + capacidad + "\n" +
+               "Requisitos:" + requisitos + "\n" +
+               "Hora de Inicio:" + horaInicio + "\n" +
+               "Hora de Cierre:" + horaCierre;
     }
     
     

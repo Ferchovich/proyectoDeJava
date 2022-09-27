@@ -13,6 +13,8 @@ import javax.swing.JOptionPane;
 import TimeClass.TimePicker;
 import clases.Cls_Productos;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  * 
  * 
@@ -27,8 +29,8 @@ public class frmEvento extends javax.swing.JFrame {
     private TimePicker timePicker2;
     private Cls_Productos CP;
     private ArrayList<Evento> listadeEventos;
-    private frmBuscar ventanaBuscar;
     private frmLogIn ventanaPadre;
+    private QR codigoQR;
     /**
      * Creates new form frmEvento
      * @param nombreDeUsuario
@@ -37,7 +39,7 @@ public class frmEvento extends javax.swing.JFrame {
         initComponents();
         this.nombreDeUsuario = nombreDeUsuario;
         this.ventanaPadre = ventanaPadre;
-        
+        codigoQR = new QR();
         timePicker1 = new TimePicker();
         timePicker1.setDisplayText(txtTime1);
         
@@ -85,7 +87,8 @@ public class frmEvento extends javax.swing.JFrame {
         btnHoraDeCierre = new javax.swing.JButton();
         txtTime2 = new javax.swing.JTextField();
         lblUsuario = new javax.swing.JLabel();
-        btnBuscar1 = new javax.swing.JButton();
+        btnCerrarSesion = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -172,14 +175,16 @@ public class frmEvento extends javax.swing.JFrame {
 
         lblUsuario.setText("Usuario:");
 
-        btnBuscar1.setFont(new java.awt.Font("Mongolian Baiti", 2, 14)); // NOI18N
-        btnBuscar1.setText("Cerrar sesion");
-        btnBuscar1.setNextFocusableComponent(txtNombreEvento);
-        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrarSesion.setFont(new java.awt.Font("Mongolian Baiti", 2, 12)); // NOI18N
+        btnCerrarSesion.setText("Cerrar sesion");
+        btnCerrarSesion.setNextFocusableComponent(txtNombreEvento);
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscar1ActionPerformed(evt);
+                btnCerrarSesionActionPerformed(evt);
             }
         });
+
+        jLabel7.setText("dd/mm/aaaa");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -198,7 +203,10 @@ public class frmEvento extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(lblUsuario)))
+                        .addComponent(lblUsuario))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(jLabel7)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(104, 104, 104)
@@ -211,9 +219,14 @@ public class frmEvento extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtTime1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(197, 197, 197))
+                        .addGap(197, 197, 197))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
+                        .addGap(23, 23, 23)
+                        .addComponent(btnCerrarSesion))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(239, 239, 239)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -224,12 +237,8 @@ public class frmEvento extends javax.swing.JFrame {
                                     .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnHoraDeCierre)
                                     .addComponent(txtTime2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel1))
-                        .addContainerGap(21, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(btnBuscar1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel1))))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,11 +259,16 @@ public class frmEvento extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtNombreEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(42, 42, 42)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel6))
-                                .addGap(17, 17, 17)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(42, 42, 42)
+                                        .addComponent(jLabel6))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(30, 30, 30)
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel7)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(cmbRequisitos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35)
@@ -269,13 +283,13 @@ public class frmEvento extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnHoraDeInicio)
                             .addComponent(btnHoraDeCierre))))
-                .addGap(18, 18, 18)
+                .addGap(40, 40, 40)
+                .addComponent(btnCerrarSesion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscar)
                     .addComponent(btnCrear))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -296,6 +310,8 @@ public class frmEvento extends javax.swing.JFrame {
         return lblUsuario;
     }
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+        listadeEventos = CP.getDatos("eventos");
+        
         
         String nombreEvento = txtNombreEvento.getText();
         String fecha = txtFecha.getText();
@@ -304,23 +320,46 @@ public class frmEvento extends javax.swing.JFrame {
         String horaInicio = txtTime1.getText();
         String horaCierre = txtTime2.getText();
         if (!(nombreEvento.equals("") || fecha.equals("") || direccion.equals("") || requisitos.equals("")) || (horaInicio.equals(horaCierre))){
-            try {
-                int capacidad = Integer.parseInt(txtCapacidad.getText());
-                Evento evento = new Evento(nombreEvento, fecha, direccion, requisitos, horaInicio, horaCierre, capacidad);
-                CP.insertarDatos(evento);
-                generadorQR = new QR();
-                BufferedImage imagen = generadorQR.crearQR(evento.invitacion(nombreDeUsuario));
-                ImageIcon icono = new ImageIcon(imagen);
-                JOptionPane.showMessageDialog(this, "Invitacion creada correctamente", "Evento", JOptionPane.PLAIN_MESSAGE, icono);
+            int var = 0;
+            for (Evento ev: listadeEventos){
+                if (ev.getNombre().equals(nombreEvento)){
+                    var++;
+                }
+                
+            }
+            if (var == 0){
+                try {
+                
+                    int capacidad = Integer.parseInt(txtCapacidad.getText());
+                    Evento evento = new Evento(nombreEvento, fecha, direccion, requisitos, horaInicio, horaCierre, capacidad);
+                    CP.insertarDatos(evento);
+                    generadorQR = new QR();
+                    BufferedImage imagen = generadorQR.crearQR(evento.invitacion(nombreDeUsuario));
+                    ImageIcon icono = new ImageIcon(imagen);
+                    JOptionPane.showMessageDialog(this, "Invitacion creada correctamente", "Evento", JOptionPane.PLAIN_MESSAGE, icono);
             } catch (NumberFormatException ex){
                 JOptionPane.showMessageDialog(this, "Error al ingresar los datos", "Error al crear el evento", JOptionPane.ERROR_MESSAGE);
             } catch (WriterException ex) {
                 JOptionPane.showMessageDialog(this, "Error al crear el codigo QR", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
+            else {
+                JOptionPane.showMessageDialog(this, "El evento ya existe", "Error al crear el evento", JOptionPane.WARNING_MESSAGE);
+            }
+            
+            
+
         }
         else {
             JOptionPane.showMessageDialog(this, "Tiene que rellenar todos los formularios", "Error",  JOptionPane.WARNING_MESSAGE);
         }
+        
+        txtNombreEvento.setText("");
+        txtFecha.setText("");
+        txtDireccion.setText("");
+        txtCapacidad.setText("");
+        
+                
  
     }//GEN-LAST:event_btnCrearActionPerformed
 
@@ -345,17 +384,26 @@ public class frmEvento extends javax.swing.JFrame {
             
         }
         if (var == 1) {
-            JOptionPane.showMessageDialog(this, eventoBuscado.invitacion(nombreDeUsuario), "El evento ha sido encontrado", JOptionPane.INFORMATION_MESSAGE);
+            BufferedImage imagen;
+            try {
+                imagen = codigoQR.crearQR(eventoBuscado.invitacion(nombreDeUsuario));
+                ImageIcon icono = new ImageIcon(imagen);
+                JOptionPane.showMessageDialog(this, eventoBuscado.proterties(nombreDeUsuario), "El evento ha sido encontrado",JOptionPane.PLAIN_MESSAGE, icono);
+            } catch (WriterException ex) {
+                Logger.getLogger(frmEvento.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
         }
         else if (var == 0){
             JOptionPane.showMessageDialog(this, "El evento no existe" ,"Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         this.setVisible(false);
         ventanaPadre.setVisible(true);
-    }//GEN-LAST:event_btnBuscar1ActionPerformed
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -394,7 +442,7 @@ public class frmEvento extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnBuscar1;
+    private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnHoraDeCierre;
     private javax.swing.JButton btnHoraDeInicio;
@@ -406,6 +454,7 @@ public class frmEvento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
